@@ -1,23 +1,22 @@
 import {useState} from "react";
 
 const Register = () => {
-    const [name, setName] = useState("이름");
-    const [birth, setBirth] = useState("");
+    const [input, setInput] = useState({
+        name: "",
+        birth: "",
+    })    
+
+    const onChange = (e) => {
+        setInput({
+            ...input,
+            [e.target.name] : e.target.value,
+        })
+    };
     
-
-
-    const onChangeName = (e) => {
-        setName(e.target.value);
-    }
-    
-    const onChangeBirth = (e) => {
-        setBirth(e.target.value);
-    }
-
     return (
     <div>
-        <div><input value={name} onChange={onChangeName} placeholder={"이름"}></input></div>
-        <div><input value={birth} onChange={onChangeBirth} type="date"></input>{birth}</div>
+        <div><input name="name" value={input.name} onChange={onChange} placeholder={"이름"}></input></div>
+        <div><input name="birth" value={input.birth} onChange={onChange} type="date"></input>{input.birth}</div>
     </div>
     )
 }
