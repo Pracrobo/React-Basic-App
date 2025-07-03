@@ -1,10 +1,14 @@
-import {useState} from "react";
+import {useState, useRef} from "react";
+
 
 const Register = () => {
     const [input, setInput] = useState({
         name: "",
         birth: "",
     })    
+
+    const refObj = useRef(0);
+    console.log(refObj);
 
     const onChange = (e) => {
         setInput({
