@@ -9,6 +9,12 @@
 | useState |||
 | useRef |  | 25/07/08 |
 | React Hooks | | 25/07/08 |
+| useEffect | |  |
+| useReducer | |  |
+| useMemo | |  |
+| useCallback | |  |
+| Context | |  |
+
 
 ### [reference]
 - [강의]()
