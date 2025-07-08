@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import Button from "./components/Button";
 import {useState} from 'react';
 import Register from "./components/Register";
-
+import HookExam from "./components/HookExam";
 
 function App() {
   const buttonProps = {
@@ -33,8 +33,12 @@ function App() {
       </Button>
       <h1>{count}</h1>
       <button onClick = {() => {
-        setCount(count + 1);}}>+</button>
+        setCount(count + 1);}}>+
+      </button>
 
+      <HookExam>
+        
+      </HookExam>
 
       <Footer />
     </>
