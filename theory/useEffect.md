@@ -21,7 +21,16 @@ const onClickButton = (value) => {
 };
 ```
 
-제어하는 부분 자세히
+### [] 의존성 배열, dependency array, deps
+
+- useEffect의 두번째 인자인 의존성 배열은 effect 가 다시 실행되어야 하는 조건(변화)을 지정
+- 콜백 함수가 언제 실행될지를 제어한다.
+
+```ts
+useEffect(() => {}, []);
+```
+
+제어하는 부분 자세히 보면,
 
 `App.jsx`
 
@@ -63,3 +72,8 @@ const Even = () => {
 
 export default Even;
 ```
+
+### 클린업 함수, 정리 함수 , Cleanup
+
+- useEffect 콜백 함수가 리턴하는 함수의 역할
+- 컴포넌트가 사라질때(언마운트)나 effect가 다시 실행되기 전에 이전 effect 가 남긴 것을 정리하는데 쓰임
