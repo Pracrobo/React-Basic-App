@@ -15,6 +15,6 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ### State Lifting(State 끌어 올리기)
 
-- React.js의 데이터 흐름 : 부모 -> 자식 :: 단방향 데이터 흐름
+- React.js의 데이터 흐름 : 부모 -> 자식 :: 단방향 데이터 흐름(Unidirectional Data Flow)
 - state 를 어떤 component 에 넣을건지가 핵심(부모나 공통)
 - 아래 컴포넌트가 모두 공유할 수 있도록 만드는 것을 State Lifting 이라 한다.
