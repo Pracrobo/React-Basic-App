@@ -1,5 +1,5 @@
 import "./Header.css";
-
+import { memo } from "react";
 const Header = () => {
   return (
     <div className="Header">
@@ -8,4 +8,7 @@ const Header = () => {
     </div>
   );
 };
-export default Header;
+
+// const memoizedHeader = memo(Header); // Props가 되지 않으면 리렌터링 되지 않음
+//export default memoizedHeader;
+export default memo(Header);

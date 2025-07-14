@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Editor from "./components/Editor";
 import List from "./components/List";
-import { useState, useRef, useReducer } from "react";
+import { useState, useRef, useReducer, useCallback } from "react";
 import TodoItem from "./components/TodoItem";
 
 const mockData = [
@@ -49,7 +49,7 @@ function App() {
   // reducer 함수가 담당
   const idRef = useRef(3);
 
-  const onCreate = (content) => {
+  const onCreate = useCallback((content) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -59,22 +59,24 @@ function App() {
         date: new Date().getTime(),
       },
     });
-  };
+  }, []);
 
-  const onUpdate = (targetId) => {
+  const onUpdate = useCallback((targetId) => {
     // targetId와 일치하는 id를 갖는 투두 아이템의 isDone 변경
     // 인수: todos 배열에서 targetId와 일치하는 id를 갖는 요소의 데이터만 딱 바꾼 새로운 배열
     dispatch({
       type: "UPDATE",
       targetId: targetId,
     });
-  };
-  const onDelete = (targetId) => {
+  }, []);
+
+  const onDelete = useCallback((targetId) => {
     dispatch({
       type: "DELETE",
       targetId: targetId,
     });
-  };
+  }, []);
+  // 빈배열은 mouted 될때 한번만 함수를 새롭게 생성하지 않음
 
   return (
     <div className="App">
