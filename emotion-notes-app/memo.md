@@ -149,3 +149,50 @@ createRoot(document.getElementById("root")).render(
 ![alt text](image.png)
 
 root compoenet - BrowserRouter
+
+## 이미지 최적화
+
+assets 파일로
+url을 통해 추가할 수도 잇음
+
+```js
+import emotion1 from "./assets/emotion1.png";
+import emotion2 from "./assets/emotion2.png";
+import emotion3 from "./assets/emotion3.png";
+import emotion4 from "./assets/emotion4.png";
+
+    <img src={emotion1} />
+    <img src={emotion2} />
+    <img src={emotion3} />
+    <img src={emotion4} />
+    <img src={emotion5} />
+    // <img src={"/emotion5.png"} />
+
+```
+
+production 모드에서 확인 할 수 있다.
+
+```bash
+npm run build
+```
+
+최적화 볼 수 있음
+
+```bash
+
+npm run preview
+```
+
+![alt text](image-1.png)
+
+- 암호문같은 포맷 : 데이터 uri
+- 문자열 형태로 브라우저에 캐싱하기 위해 만들어진 것
+
+![image-log 보기](image-2.png)
+![alt text](image-3.png)
+
+- memory cache, time을 보면 된다.
+- 10,000개, 100,000개 캐싱? 문제 될 수 있다.
+  ![alt text](image-4.png)
+
+- vh(viewPort Heigth) : 현재 브라우저의 스크린 높이
