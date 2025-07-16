@@ -35,7 +35,7 @@ console.log(index2); // 0(같은 값이면 첫번째 발견한 index 값 반환)
 
 let arr5 = [2, 2, 2];
 let index3 = arr5.indexOf(20);
-console.log(index3); // -1(없다는 의미로 -1 qksghks)
+console.log(index3); // -1(없다는 의미로 -1 반환)
 
 let objArr = [{ name: "Pracrobo" }, { name: "Hong Gildong" }];
 console.log(objArr.indexOf({ name: "Pracrobo" })); // -1 못찾음
