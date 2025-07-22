@@ -1,5 +1,10 @@
-import { useReducer, useRef, createContext } from "react";
+import { useReducer, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
+import {
+  DiaryStateContext,
+  DiaryDispatchContext,
+} from "./contexts/DiaryContext";
+
 import "./App.css";
 import Home from "./pages/Home";
 import Diary from "./pages/Diary";
@@ -41,9 +46,6 @@ function reducer(state, action) {
       return state;
   }
 }
-
-export const DiaryStateContext = createContext();
-export const DiaryDispatchContext = createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
