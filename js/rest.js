@@ -1,4 +1,4 @@
-/// rest 매개변수ㅡ
+/// rest 매개변수
 
 let arr1 = [1, 2, 3];
 function funcB(one, ...rest) {
