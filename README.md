@@ -15,7 +15,7 @@
 | useCallback   | react-basic/basic04   | 25/07/15 |
 | Context       | react-basic/basic05   | 25/07/15 |
 
-## 배포
+## Deploy
 
 - vite + Github Action - Counter APP: https://pracrobo.github.io/react-app/
 - vite + vercel - Emotion Diary : https://emotion-diary-ten-theta.vercel.app/ 
