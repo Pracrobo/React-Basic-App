@@ -1,6 +1,6 @@
-# React 학습 및 실습
+# React Practice
 
-| 제목          | 내용                  | 학습일   |
+| Title         | Contents              | Date     |
 | ------------- | --------------------- | -------- |
 | JSX & TSX     | react-basic/basic01   | 25/07/01 |
 | props & state | counter-app/          | 25/07/01 |
@@ -17,8 +17,8 @@
 
 ## 배포
 
-- vite + github action - 카운터앱 : https://pracrobo.github.io/react-app/
-- vite + vercel - 감정일기 : https://emotion-diary-ten-theta.vercel.app/ 
+- vite + Github Action - Counter APP: https://pracrobo.github.io/react-app/
+- vite + vercel - Emotion Diary : https://emotion-diary-ten-theta.vercel.app/ 
 
 ## Reference
-- [강의](https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/dashboard)
+- [Lecture](https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/dashboard)
