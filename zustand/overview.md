@@ -1,4 +1,4 @@
-# Zustand 5.0.5
+# [Zustand 5.0.5](https://zustand.docs.pmnd.rs/getting-started/introduction)
 
 - 작고 빠르며 확장 가능한 React 프로젝트에서 사용하는 상태 관리(Store) 라이브러리이다.
 
@@ -201,5 +201,133 @@ export default function App() {
   );
 }
 ```
+
+## 상태 초기화
+
+```ts
+const useSomeStore = create<State & Actions>()((set, get, store) => ({
+  // your code here
+  reset: () => {
+    set(store.getInitialState());
+  },
+}));
+```
+
+- resetState : 상태와 액션을 분리해서 타입과 초깃값을 작성한다.
+
+```ts
+import type { StateCreator } from 'zustand'
+import { create: actualCreate } from 'zustand'
+
+const storeResetFns = new Set<() => void>()
+
+const resetAllStores = () => {
+  storeResetFns.forEach((resetFn) => {
+    resetFn()
+  })
+}
+
+export const create = (<T>() => {
+  return (stateCreator: StateCreator<T>) => {
+    const store = actualCreate(stateCreator)
+    storeResetFns.add(() => {
+      store.setState(store.getInitialState(), true)
+    })
+    return store
+  }
+}) as typeof actualCreate
+
+```
+
+## 상태 삭제
+
+- set 함수의 두번째 인수로 true를 전달하면 상태를 병합하지 않고 덮어쓴다.
+- Lodash의 omit 함수 : 특정 속성들을 제외한 새로운 객체를 반환한다.
+  이를 조합하면 특정 상태들을 삭제할 수 있다.
+
+## 미들웨어
+
+```ts
+// 미들웨어 없이
+create(콜백);
+
+// 단일 미들웨어
+import { 미들웨어 } from "미들웨어";
+create(미들웨어(콜백));
+
+// 다중 미들웨어
+import { 미들웨어A } from "미들웨어A";
+import { 미들웨어B } from "미들웨어B";
+import { 미들웨어C } from "미들웨어C";
+create(미들웨어A(미들웨어B(미들웨어C(콜백))));
+
+// 타입을 사용하는 경우
+create(미들웨어A(미들웨어B(미들웨어C<타입>(콜백))));
+```
+
+### 다중 미들 웨어
+
+- 중첩 순서가 중요하다.
+
+### 상태의 타입 추론
+
+- combine 미들웨어 사용한다.
+- 첫번째 인수로 추론할 상태를 받고 두번째 인수로 set, get 매개변수를 포함하는 액션 함수를 받는다.
+- 추론 가능하지 않은 타입은 직접 작성한다.(satisfies, as 키워드 사용)
+
+### 중첩된 객체 변경
+
+[Immer](https://immerjs.github.io/immer/)\*라이브러리 를 설치 후 사용한다.
+
+```ts
+  immerInc: () =>
+    set(produce((state: State) => { ++state.deep.nested.obj.count })),
+
+```
+
+```ts
+import { create } from "zustand";
+import { immer } from "zustand/middleware/immer";
+
+type State = {
+  count: number;
+};
+
+type Actions = {
+  increment: (qty: number) => void;
+  decrement: (qty: number) => void;
+};
+
+export const useCountStore = create<State & Actions>()(
+  immer((set) => ({
+    count: 0,
+    increment: (qty: number) =>
+      set((state) => {
+        state.count += qty;
+      }),
+    decrement: (qty: number) =>
+      set((state) => {
+        state.count -= qty;
+      }),
+  }))
+);
+```
+
+### 상태 구독
+
+### 스토리지 사용(persist)
+
+persist 미들웨어를 사용해 스토리지에 상태를 저장하고 불러올 수 있다.
+name을 제공해야 한다.
+localStorage 를 기본으로 사용하고 필요하면 sessionStorage나 customStorage 를 만들어서 사용할 수 있다.
+
+```ts
+persist — ["zustand/persist", YourPersistedState]
+```
+
+### 개발자 도구
+
+- [Redux](https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?pli=1)랑 같이 사용하면 상태 모니터링이 가능하다.
+- devtools 미들웨어 사용시 개발자 도구 활성화된다.
 
 [도움](https://www.heropy.dev/p/n74Tgc)
